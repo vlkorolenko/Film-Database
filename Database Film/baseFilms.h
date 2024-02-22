@@ -17,10 +17,10 @@ private:
 public:
 
     baseFilms() {}  // Конструктор за замовчуванням
-    ~baseFilms() {}
+    ~baseFilms() {} // Деструктор
 
-    void addFilmInfo(Film film, Review review);
+    void addFilmInfo(Film film, Review review); // Метод додавання і-ції до бази даних
 
-    void printAllInfo();
+    void printAllInfo();    // Метод виведення і-ції про фільми та відгуки
 
 };

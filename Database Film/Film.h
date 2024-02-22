@@ -16,6 +16,8 @@ private:
 
 public:
 
+    // Перевантажені конструктори з використанням делегування конструкторів
+
     Film(string n) : name(n) {}
     Film(string n, int y) : name(n), year(y) {}
     Film(string n, int y, string g) : name(n), year(y), genre(g) {}

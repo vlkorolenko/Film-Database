@@ -20,8 +20,8 @@ int main()
     // Інформація про відгуки 
 
     Review firstReview("Oppenheimer", "vlkorolenko", 4.5, "20.02.2024");
-    Review secondReview("Interstellar", "abcd", 5.0, "13.09.2016");
-    Review thirdReview("Harry Potter", "potter124", 4.1, "02.10.2012");
+    Review secondReview("Interstellar", "abcd", 5.2, "13.09.2016");
+    Review thirdReview("Harry Potter", "potter124", 4.1 ,"02.10.2012");
     Review fourthReview("Pirates of the Caribbean", "pirat38", 3.9, "07.10.2007");
 
     baseFilms baseFilms;    // Оголошення бази данних
@@ -33,6 +33,6 @@ int main()
     baseFilms.addFilmInfo(thirdFilm, thirdReview);
     baseFilms.addFilmInfo(fourthFilm, fourthReview);
 
-    baseFilms.printAllInfo();
+    baseFilms.printAllInfo();   // Виведення і-ції з бази даних
 
 }
