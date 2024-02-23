@@ -18,9 +18,9 @@ public:
 
     // Перевантажені конструктори з використанням делегування конструкторів
 
-    Film(string n) : name(n) {}
-    Film(string n, int y) : name(n), year(y) {}
-    Film(string n, int y, string g) : name(n), year(y), genre(g) {}
+    Film(string n) : Film(n, 0, "", "") {}
+    Film(string n, int y) : Film(n, y, "", "") {}
+    Film(string n, int y, string g) : Film(n, y, g, "") {}
     Film(string n, int y, string g, string d) : name(n), year(y), genre(g), director(d) {}
 
     ~Film() {}
