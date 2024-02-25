@@ -7,8 +7,6 @@ using namespace std;
 class Review
 {
 
-private:
-
     string film;
     string user;
     string date;

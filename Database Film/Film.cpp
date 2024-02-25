@@ -1,5 +1,7 @@
 #include "Film.h"
 
+string Film::GetName() { return name; }
+
 void Film::printInfo()
 {
 

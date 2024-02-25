@@ -7,8 +7,6 @@ using namespace std;
 class Film
 {
 
-private:
-
     int year;
     string name;
     string  director;
@@ -23,7 +21,7 @@ public:
     Film(string n, int y, string g) : Film(n, y, g, "") {}
     Film(string n, int y, string g, string d) : name(n), year(y), genre(g), director(d) {}
 
-    ~Film() {}
+    string GetName();
 
     void printInfo();
 
