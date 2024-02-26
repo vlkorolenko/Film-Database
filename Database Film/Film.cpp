@@ -8,11 +8,18 @@ int Film::getTotalFilms() { return totalFilms; }
 
 void Film::addActor(Actor actor) { actors.push_back(actor); }
 
+Film& Film::operator++()
+{
+	
+	++views;
+	return *this;
+
+}
+
 void Film::printInfo()
 {
 
-	//std::cout << "Title: " << name << "\nYear: " << year << "\nDirector: " << director << "\nGenre: " << genre << "\nActors: " << actor << std::endl;
-	std::cout << "Title: " << name << "\nYear: " << year << "\nDirector: " << director << "\nGenre: " << genre << std::endl;
+	std::cout << "Title: " << name << "\nYear: " << year << "\nDirector: " << director << "\nGenre: " << genre << "\nViews: " << views << std::endl;
 	std::cout << "\nActors: \n" << std::endl;
 	for (Actor actor : actors)
 	{

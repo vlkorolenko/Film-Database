@@ -3,7 +3,7 @@
 void Review::printReview()
 {
 
-	cout << "Film: " << film << "\nUser: " << user << "\nRate: " << rate << "\nDate: " << date << endl;
-	cout << "-------------" << endl;
+	std::cout << "Film: " << film << "\nUser: " << user << "\nRate: " << rate << "\nDate: " << date << std::endl;
+	std::cout << "-------------" << std::endl;
 
 }

@@ -12,9 +12,9 @@ int main()
 {
     // Інформація про фільм
     
-    Film firstFilm("Oppenheimer", 2023, "Biographical thriller film", "C. Nolan");
-    Film secondFilm("Interstellar", 2014, "Science fiction film", "C. Nolan");
-    Film thirdFilm("Avatar", 2009, "Epic science fiction film", "J. Cameron");
+    Film firstFilm("Oppenheimer", 2023, "Biographical thriller film", "C. Nolan", 17873921);
+    Film secondFilm("Interstellar", 2014, "Science fiction film", "C. Nolan", 1674386490);
+    Film thirdFilm("Avatar", 2009, "Epic science fiction film", "J. Cameron", 1478902);
 
     // Інформація про акторів
 
@@ -41,7 +41,7 @@ int main()
     baseFilms baseFilms;    // Оголошення бази данних
 
     // Внесення і-ції про фільм, відгуки та акторів до БД
-
+  
     baseFilms.addFilmInfo(firstFilm, FIRST_REVIEW);
     baseFilms.addFilmInfo(secondFilm, SECOND_REVIEW);
     baseFilms.addFilmInfo(thirdFilm, THIRD_REVIEW);
@@ -54,5 +54,10 @@ int main()
     baseFilms.printAllInfo();   // Виведення і-ції з бази даних
 
     cout << "\n\nfilms in base: " << Film::getTotalFilms() << endl;
+
+    ++firstFilm;
+
+    firstFilm.printInfo();
+
 
 }
