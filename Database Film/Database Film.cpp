@@ -55,9 +55,17 @@ int main()
 
     cout << "\n\nfilms in base: " << Film::getTotalFilms() << endl;
 
-    ++firstFilm;
+    // Приклад роботи перевантаження унарного оператора '++'
 
+    ++firstFilm;
+    cout << endl;
     firstFilm.printInfo();
+
+    if (firstFilm == 2023)
+    {
+        cout << "\nFound a film released in 2023: \n\n";
+        firstFilm.printInfo();
+    }
 
 
 }

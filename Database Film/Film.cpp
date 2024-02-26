@@ -16,6 +16,8 @@ Film& Film::operator++()
 
 }
 
+bool Film::operator==(int otherYear) const { return this->year == otherYear; }
+
 void Film::printInfo()
 {
 
@@ -29,5 +31,3 @@ void Film::printInfo()
 	std::cout << "-------------" << std::endl;
 
 }
-
-//int Film::totalFilms = 0;
