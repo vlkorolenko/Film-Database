@@ -15,8 +15,9 @@ class baseFilms
     vector<Actor> actors;
 
 public:
+    void addActor(Actor actor);
 
-    void addFilmInfo(Film film, Review review, Actor actor); // Метод додавання і-ції до бази даних
+    void addFilmInfo(Film film, Review review); // Метод додавання і-ції до бази даних
 
     void printAllInfo();    // Метод виведення і-ції про фільми та відгуки
 

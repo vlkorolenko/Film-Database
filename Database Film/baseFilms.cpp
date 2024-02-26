@@ -1,16 +1,17 @@
 #include "baseFilms.h"
 
-void baseFilms::addFilmInfo(Film film, Review review, Actor actor)
+void baseFilms::addActor(Actor actor) { actors.push_back(actor); }
+
+void baseFilms::addFilmInfo(Film film, Review review)
 {
+
     films.push_back(film);
     reviews.push_back(review);
-    actors.push_back(actor);
+
 }
 
 void baseFilms::printAllInfo()
 {
-
-    cout << "\nFilms: " << endl << endl;
 
     for (Film film : films)
     {
@@ -30,4 +31,5 @@ void baseFilms::printAllInfo()
     {
         review.printReview();
     }
+
 }
