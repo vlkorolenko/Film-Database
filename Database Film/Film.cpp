@@ -1,6 +1,10 @@
 #include "Film.h"
 
+int Film::totalFilms = 0;
+
 std::string Film::GetName() { return name; }
+
+int Film::getTotalFilms() { return totalFilms; }
 
 void Film::addActor(Actor actor) { actors.push_back(actor); }
 
@@ -18,3 +22,5 @@ void Film::printInfo()
 	std::cout << "-------------" << std::endl;
 
 }
+
+//int Film::totalFilms = 0;

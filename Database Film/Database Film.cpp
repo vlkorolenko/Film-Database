@@ -10,11 +10,11 @@ using namespace std;
 
 int main()
 {
-
     // Інформація про фільм
     
     Film firstFilm("Oppenheimer", 2023, "Biographical thriller film", "C. Nolan");
     Film secondFilm("Interstellar", 2014, "Science fiction film", "C. Nolan");
+    Film thirdFilm("Avatar", 2009, "Epic science fiction film", "J. Cameron");
 
     // Інформація про акторів
 
@@ -22,16 +22,21 @@ int main()
     Actor McConaughey("M. McConaughey", 54, secondFilm.GetName());
     Actor Robert("R. John Downey Jr.", 58, firstFilm.GetName());
     Actor Jessica("J. Michelle Chastain", 46, secondFilm.GetName());
+    Actor Worthington("S. Worthington", 47, thirdFilm.GetName());
+    Actor Saldana("Z. Saldana", 45, thirdFilm.GetName());
 
     firstFilm.addActor(Murphy);
     firstFilm.addActor(Robert);
     secondFilm.addActor(McConaughey);
     secondFilm.addActor(Jessica);
+    thirdFilm.addActor(Worthington);
+    thirdFilm.addActor(Saldana);
 
     // Інформація про відгуки 
 
     const Review FIRST_REVIEW("Oppenheimer", "vlkorolenko", 4.5, "20.02.2024");
     const Review SECOND_REVIEW("Interstellar", "vladb123", 4.9, "13.09.2016");
+    const Review THIRD_REVIEW("Avatar", "absd", 3.1, "07.11.2010");
 
     baseFilms baseFilms;    // Оголошення бази данних
 
@@ -39,6 +44,7 @@ int main()
 
     baseFilms.addFilmInfo(firstFilm, FIRST_REVIEW);
     baseFilms.addFilmInfo(secondFilm, SECOND_REVIEW);
+    baseFilms.addFilmInfo(thirdFilm, THIRD_REVIEW);
 
     baseFilms.addActor(Murphy);
     baseFilms.addActor(Robert);
@@ -46,5 +52,7 @@ int main()
     baseFilms.addActor(Jessica);
 
     baseFilms.printAllInfo();   // Виведення і-ції з бази даних
+
+    cout << "\n\nfilms in base: " << Film::getTotalFilms() << endl;
 
 }
