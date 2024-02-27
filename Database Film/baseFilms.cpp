@@ -4,10 +4,8 @@ void baseFilms::addActor(Actor actor) { actors.push_back(actor); }
 
 void baseFilms::addFilmInfo(Film film, Review review)
 {
-
     films.push_back(film);
     reviews.push_back(review);
-
 }
 
 void baseFilms::printAllInfo()

@@ -31,3 +31,16 @@ void Film::printInfo()
 	std::cout << "-------------" << std::endl;
 
 }
+
+std::ostream& operator<<(std::ostream& os, const Film& film)
+{
+	os << "Title: " << film.name << "\nYear: " << film.year << "\nGenre: " << film.genre << "\nDirector: " << film.director << "\nViews: " << film.views;
+	std::cout << "\n\nActors: \n" << std::endl;
+	for (const auto& actor : film.actors)
+	{
+		os << actor << std::endl;
+		std::cout << std::endl;
+	}
+	return os;
+	
+}

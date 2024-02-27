@@ -19,5 +19,7 @@ public:
 
 	void printInfo();
 
+	friend std::ostream& operator<<(std::ostream& os, const Actor& actor);
+
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Review.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,5 +35,7 @@ public:
     void printInfo();
 
     std::string GetName();
+
+    friend std::ostream& operator<<(std::ostream& os, const Film& film);
 
 };

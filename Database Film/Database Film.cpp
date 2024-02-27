@@ -51,21 +51,36 @@ int main()
     baseFilms.addActor(McConaughey);
     baseFilms.addActor(Jessica);
 
-    baseFilms.printAllInfo();   // Виведення і-ції з бази даних
+    cout << firstFilm;
+    cout << "------------\n\n";
+    cout << secondFilm;
+    cout << "------------\n\n";
+    cout << thirdFilm;
+    cout << "************\n\n";
 
-    cout << "\n\nfilms in base: " << Film::getTotalFilms() << endl;
+    cout << "Actors in database: \n\n";
+    cout << Murphy << endl << endl;
+    cout << McConaughey << endl << endl;
+    cout << Robert << endl << endl;
 
-    // Приклад роботи перевантаження унарного оператора '++'
+    cout << "************\n\n";
+    cout << FIRST_REVIEW;
+    cout << "------------\n";
+    cout << SECOND_REVIEW;
+    cout << "------------\n";
+    cout << THIRD_REVIEW;
+    cout << "\n************\n\n";
 
-    ++firstFilm;
+    ++firstFilm;                    // Приклад роботи перевантаження унарного оператора '++'
     cout << endl;
     firstFilm.printInfo();
 
-    if (firstFilm == 2023)
+    if (firstFilm == 2023)          // Приклад роботи перевантаження бінарного оператора '=='
     {
-        cout << "\nFound a film released in 2023: \n\n";
+        std::cout << "\nFound a film released in 2023: \n\n";
         firstFilm.printInfo();
     }
 
+    cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;
 
 }
