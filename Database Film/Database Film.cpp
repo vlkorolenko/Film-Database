@@ -10,14 +10,13 @@ using namespace std;
 
 int main()
 {
+
     // Інформація про фільм
-    
     Film firstFilm("Oppenheimer", 2023, "Biographical thriller film", "C. Nolan", 17873921);
     Film secondFilm("Interstellar", 2014, "Science fiction film", "C. Nolan", 1674386490);
     Film thirdFilm("Avatar", 2009, "Epic science fiction film", "J. Cameron", 1478902);
 
     // Інформація про акторів
-
     Actor Murphy("K. Murphy", 47, firstFilm.GetName());
     Actor McConaughey("M. McConaughey", 54, secondFilm.GetName());
     Actor Robert("R. John Downey Jr.", 58, firstFilm.GetName());
@@ -33,7 +32,6 @@ int main()
     thirdFilm.addActor(Saldana);
 
     // Інформація про відгуки 
-
     const Review FIRST_REVIEW("Oppenheimer", "vlkorolenko", 4.5, "20.02.2024");
     const Review SECOND_REVIEW("Interstellar", "vladb123", 4.9, "13.09.2016");
     const Review THIRD_REVIEW("Avatar", "absd", 3.1, "07.11.2010");
@@ -41,7 +39,6 @@ int main()
     baseFilms baseFilms;    // Оголошення бази данних
 
     // Внесення і-ції про фільм, відгуки та акторів до БД
-  
     baseFilms.addFilmInfo(firstFilm, FIRST_REVIEW);
     baseFilms.addFilmInfo(secondFilm, SECOND_REVIEW);
     baseFilms.addFilmInfo(thirdFilm, THIRD_REVIEW);
@@ -51,6 +48,9 @@ int main()
     baseFilms.addActor(McConaughey);
     baseFilms.addActor(Jessica);
 
+    baseFilms.printAllInfo();
+
+    /*// Перевантаження дружнього оператору stream exctraction (<<)
     cout << firstFilm;
     cout << "------------\n\n";
     cout << secondFilm;
@@ -69,18 +69,33 @@ int main()
     cout << SECOND_REVIEW;
     cout << "------------\n";
     cout << THIRD_REVIEW;
-    cout << "\n************\n\n";
+    cout << "\n************\n\n";*/
 
-    ++firstFilm;                    // Приклад роботи перевантаження унарного оператора '++'
+    // Приклад роботи перевантаження унарного оператора '++'
+    ++firstFilm;                    
     cout << endl;
     firstFilm.printInfo();
 
-    if (firstFilm == 2023)          // Приклад роботи перевантаження бінарного оператора '=='
+    // Приклад роботи перевантаження бінарного оператора '=='
+    if (firstFilm == 2023)          
     {
-        std::cout << "\nFound a film released in 2023: \n\n";
+        cout << "\n[Found a film released in 2023] \n";
         firstFilm.printInfo();
     }
 
-    cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;
+    // Перевантаження дружнього оператору stream insertion (>>)
+    Film newFilm("", 0, "", "", 0);
+    cout << "[Enter new film info]" <<endl<<endl;
+    cin >> newFilm;
 
+    Actor newActor("", 0, newFilm.GetName());
+    cout << "\n[Add actor to this film]" << endl << endl;
+    cin >> newActor;
+
+    newFilm.addActor(newActor);
+    cout << "\n************\n\n";
+    cout << "New film info: \n" << endl;
+    cout << newFilm;
+
+    cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
 }

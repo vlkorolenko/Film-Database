@@ -4,7 +4,6 @@
 
 class Review
 {
-
     std::string film;
     std::string user;
     std::string date;
@@ -17,5 +16,4 @@ public:
     void printReview();
 
     friend std::ostream& operator<<(std::ostream& os, const Review& review);
-
 };

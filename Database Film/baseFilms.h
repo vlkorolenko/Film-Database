@@ -9,7 +9,6 @@ using namespace std;
 
 class baseFilms
 {
-
     vector<Film> films;
     vector<Review> reviews;
     vector<Actor> actors;
@@ -18,8 +17,7 @@ public:
 
     void addActor(Actor actor);
 
-    void addFilmInfo(Film film, Review review); // Метод додавання і-ції до бази даних
+    void addFilmInfo(Film film, Review review); // Метод для додавання інформації до бази даних
 
-    void printAllInfo();    // Метод виведення і-ції про фільми та відгуки
-
+    void printAllInfo();                        // Метод для виведення інформації про фільми та відгуки
 };

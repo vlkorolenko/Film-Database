@@ -7,7 +7,6 @@
 
 class Film
 {
-
     int year;
     int views;
     static int totalFilms;
@@ -25,6 +24,17 @@ public:
     Film(std::string n, int y, std::string g, std::string d) : Film(n, y, g, d, 0) { totalFilms++; }
     Film(std::string n, int y, std::string g, std::string d, int v) : name(n), year(y), genre(g), director(d), views(v) { totalFilms++; }
 
+    // Конструктор копіювання
+    Film(const Film& other)
+    {
+        this->name = other.name;
+        this->year = other.year;
+        this->genre = other.genre;
+        this->director = other.director;
+        this->views = other.views;
+        this->actors = other.actors;
+    }
+
     static int getTotalFilms();
 
     void addActor(Actor actor);
@@ -38,4 +48,5 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Film& film);
 
+    friend std::istream& operator>>(std::istream& is, Film& film);
 };
