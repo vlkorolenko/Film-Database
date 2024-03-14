@@ -1,22 +1,23 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "People.h"
 
-class Actor
+class Actor : public People
 {
-	std::string name;
-	int age;
+
 	std::string films;
 
 public:
 
-	Actor(std::string n, int a, std::string f) : name(n), age(a), films(f) {}
+	Actor(string n) : People(n,"",0) {}
+	Actor(string n) : People(n,0) {}
+	Actor(string n,int a) : People(n,a) {}
+	Actor(string n,int a, string f) : People(n,a), films(f) {}
 
-	std::string GetName();
+	Actor(const Actor& other);
 
-	void printInfo();
+	std::string GetActorName();
 
-	friend std::ostream& operator<<(std::ostream& os, const Actor& actor);
-
-	friend std::istream& operator>>(std::istream& is, Actor& actor);
+	void printActorInfo();
 };

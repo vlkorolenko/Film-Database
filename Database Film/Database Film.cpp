@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include "People.h"
 #include "Film.h"
 #include "Review.h"
 #include "baseFilms.h"
@@ -17,12 +18,12 @@ int main()
     Film thirdFilm("Avatar", 2009, "Epic science fiction film", "J. Cameron", 1478902);
 
     // Інформація про акторів
-    Actor Murphy("K. Murphy", 47, firstFilm.GetName());
-    Actor McConaughey("M. McConaughey", 54, secondFilm.GetName());
-    Actor Robert("R. John Downey Jr.", 58, firstFilm.GetName());
-    Actor Jessica("J. Michelle Chastain", 46, secondFilm.GetName());
-    Actor Worthington("S. Worthington", 47, thirdFilm.GetName());
-    Actor Saldana("Z. Saldana", 45, thirdFilm.GetName());
+    Actor Murphy("K. Murphy", 47, firstFilm.GetTitle());
+    Actor McConaughey("M. McConaughey", 54, secondFilm.GetTitle());
+    Actor Robert("R. John Downey Jr.", 58, firstFilm.GetTitle());
+    Actor Jessica("J. Michelle Chastain", 46, secondFilm.GetTitle());
+    Actor Worthington("S. Worthington", 47, thirdFilm.GetTitle());
+    Actor Saldana("Z. Saldana", 45, thirdFilm.GetTitle());
 
     firstFilm.addActor(Murphy);
     firstFilm.addActor(Robert);
@@ -50,27 +51,6 @@ int main()
 
     baseFilms.printAllInfo();
 
-    /*// Перевантаження дружнього оператору stream exctraction (<<)
-    cout << firstFilm;
-    cout << "------------\n\n";
-    cout << secondFilm;
-    cout << "------------\n\n";
-    cout << thirdFilm;
-    cout << "************\n\n";
-
-    cout << "Actors in database: \n\n";
-    cout << Murphy << endl << endl;
-    cout << McConaughey << endl << endl;
-    cout << Robert << endl << endl;
-
-    cout << "************\n\n";
-    cout << FIRST_REVIEW;
-    cout << "------------\n";
-    cout << SECOND_REVIEW;
-    cout << "------------\n";
-    cout << THIRD_REVIEW;
-    cout << "\n************\n\n";*/
-
     // Приклад роботи перевантаження унарного оператора '++'
     ++firstFilm;                    
     cout << endl;
@@ -82,20 +62,6 @@ int main()
         cout << "\n[Found a film released in 2023] \n";
         firstFilm.printInfo();
     }
-
-    // Перевантаження дружнього оператору stream insertion (>>)
-    Film newFilm("", 0, "", "", 0);
-    cout << "[Enter new film info]" <<endl<<endl;
-    cin >> newFilm;
-
-    Actor newActor("", 0, newFilm.GetName());
-    cout << "\n[Add actor to this film]" << endl << endl;
-    cin >> newActor;
-
-    newFilm.addActor(newActor);
-    cout << "\n************\n\n";
-    cout << "New film info: \n" << endl;
-    cout << newFilm;
 
     cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
 }

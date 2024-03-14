@@ -22,7 +22,7 @@ void baseFilms::printAllInfo()
 
     for (Actor actor : actors)
     {
-        actor.printInfo();
+        actor.printActorInfo();
     }
 
     cout << "\nReviews: " << endl << endl;

@@ -10,7 +10,7 @@ class Film
     int year;
     int views;
     static int totalFilms;
-    std::string name;
+    std::string title;
     std::string  director;
     std::string genre;
     std::vector<Actor> actors;
@@ -18,16 +18,16 @@ class Film
 public:
 
     // Перевантажені конструктори з використанням делегування конструкторів
-    Film(std::string n) : Film(n, 0, "", "", 0) { totalFilms++; }
-    Film(std::string n, int y) : Film(n, y, "", "", 0) { totalFilms++; }
-    Film(std::string n, int y, std::string g) : Film(n, y, g, "", 0) { totalFilms++; }
-    Film(std::string n, int y, std::string g, std::string d) : Film(n, y, g, d, 0) { totalFilms++; }
-    Film(std::string n, int y, std::string g, std::string d, int v) : name(n), year(y), genre(g), director(d), views(v) { totalFilms++; }
+    Film(std::string t) : Film(t, 0, "", "", 0) { totalFilms++; }
+    Film(std::string t, int y) : Film(t, y, "", "", 0) { totalFilms++; }
+    Film(std::string t, int y, std::string g) : Film(t, y, g, "", 0) { totalFilms++; }
+    Film(std::string t, int y, std::string g, std::string d) : Film(t, y, g, d, 0) { totalFilms++; }
+    Film(std::string t, int y, std::string g, std::string d, int v) : title(t), year(y), genre(g), director(d), views(v) { totalFilms++; }
 
     // Конструктор копіювання
     Film(const Film& other)
     {
-        this->name = other.name;
+        this->title = other.title;
         this->year = other.year;
         this->genre = other.genre;
         this->director = other.director;
@@ -44,9 +44,6 @@ public:
 
     void printInfo();
 
-    std::string GetName();
+    std::string GetTitle();
 
-    friend std::ostream& operator<<(std::ostream& os, const Film& film);
-
-    friend std::istream& operator>>(std::istream& is, Film& film);
 };
