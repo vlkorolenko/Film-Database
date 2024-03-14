@@ -13,12 +13,13 @@ protected:
 	int age;
 
 public:
+	People() : name(""), age(0) {}
+	People(std::string n) : name(n), age(0) {}
+	People(std::string n, int a) : name(n), age(a) {}
 
-	People(string n) : People(n, 0) {}
-	People(string n, int a) : name(n), age(a) {}
-	People(const People& other);//copy
-	People(People&& other) noexcept;//move
-	People& operator = (const People& other);//operator =
+	People(const People& other);				// Copy constructor
+	People(People&& other) noexcept;			// Move constructor
+	People& operator = (const People& other);	// Operator =
 	~People();
 	void SetName(string name);
 	void SetAge(int age);

@@ -10,12 +10,12 @@ class Actor : public People
 
 public:
 
-	Actor(string n) : People(n,"",0) {}
-	Actor(string n) : People(n,0) {}
-	Actor(string n,int a) : People(n,a) {}
-	Actor(string n,int a, string f) : People(n,a), films(f) {}
+	Actor() : People(), films("") {}
+	Actor(std::string n) : People(n), films("") {}
+	Actor(std::string n, int a) : People(n, a), films("") {}
+	Actor(std::string n, int a, std::string f) : People(n, a), films(f) {}
 
-	Actor(const Actor& other);
+	Actor(const Actor& other) : People("None", 0), films(other.films) {}
 
 	std::string GetActorName();
 

@@ -64,4 +64,7 @@ int main()
     }
 
     cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
+
+
+    Murphy.printActorInfo();
 }
