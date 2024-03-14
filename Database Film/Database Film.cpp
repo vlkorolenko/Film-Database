@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
-#include "People.h"
 #include "Film.h"
 #include "Review.h"
 #include "baseFilms.h"
@@ -43,7 +42,6 @@ int main()
     baseFilms.addFilmInfo(firstFilm, FIRST_REVIEW);
     baseFilms.addFilmInfo(secondFilm, SECOND_REVIEW);
     baseFilms.addFilmInfo(thirdFilm, THIRD_REVIEW);
-
     baseFilms.addActor(Murphy);
     baseFilms.addActor(Robert);
     baseFilms.addActor(McConaughey);
@@ -54,17 +52,15 @@ int main()
     // Приклад роботи перевантаження унарного оператора '++'
     ++firstFilm;                    
     cout << endl;
-    firstFilm.printInfo();
+    firstFilm.printFilmInfo();
 
     // Приклад роботи перевантаження бінарного оператора '=='
     if (firstFilm == 2023)          
     {
         cout << "\n[Found a film released in 2023] \n";
-        firstFilm.printInfo();
+        firstFilm.printFilmInfo();
     }
 
     cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
 
-
-    Murphy.printActorInfo();
 }

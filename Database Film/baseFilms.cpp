@@ -15,7 +15,7 @@ void baseFilms::printAllInfo()
 {
     for (Film film : films)
     {
-        film.printInfo();
+        film.printFilmInfo();
     }
 
     cout << "\nActors: " << endl << endl;

@@ -21,7 +21,7 @@ Film& Film::operator++()
 bool Film::operator==(int otherYear) const { return this->year == otherYear; }
 
 // Виведення інформації про фільм та акторів
-void Film::printInfo()
+void Film::printFilmInfo()
 {
 
 	std::cout << "\nTitle: " << title << "\nYear: " << year << "\nDirector: " << director << "\nGenre: " << genre << "\nViews: " << views << std::endl;

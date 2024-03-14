@@ -1,4 +1,5 @@
 #pragma once
+#include "People.h"
 #include "Actor.h"
 #include "Review.h"
 #include <iostream>
@@ -42,7 +43,7 @@ public:
     Film& operator++();                     // Перевантаження унарного оператору для збільшення кількості переглядів фільму
     bool operator==(int otherYear) const;   // Перевантаження бінарного оператору для порівняння фільмів по року випуску
 
-    void printInfo();
+    void printFilmInfo();
 
     std::string GetTitle();
 

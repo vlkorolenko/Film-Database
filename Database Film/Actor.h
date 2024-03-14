@@ -15,7 +15,8 @@ public:
 	Actor(std::string n, int a) : People(n, a), films("") {}
 	Actor(std::string n, int a, std::string f) : People(n, a), films(f) {}
 
-	Actor(const Actor& other) : People("None", 0), films(other.films) {}
+	Actor(const Actor& other) : People(other.name, other.age), films(other.films) {}
+
 
 	std::string GetActorName();
 

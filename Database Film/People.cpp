@@ -40,6 +40,6 @@ void People::SetAge(int newage)
 }
 
 void People::PrintPeopleInfo() {
-	cout << "Name: " << name << endl;
-	cout << "Age: " << age << endl;
+	cout << "Name: " << this->name << endl;
+	cout << "Age: " << this->age << endl;
 }
