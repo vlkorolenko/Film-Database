@@ -133,6 +133,7 @@
     <ClCompile Include="Film.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="Review.cpp" />
+    <ClCompile Include="VideoContent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Film.h" />
     <ClInclude Include="Human.h" />
     <ClInclude Include="Review.h" />
+    <ClInclude Include="VideoContent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

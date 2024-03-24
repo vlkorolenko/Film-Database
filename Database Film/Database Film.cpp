@@ -81,5 +81,8 @@ int main()
     Kovalchuk.speak();
     doSpeak(Holubchuk);
     doSpeak(Korolenko);
+    
+    firstFilm.play();
+    firstFilm.stop();
 
 }

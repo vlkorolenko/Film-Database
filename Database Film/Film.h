@@ -2,11 +2,12 @@
 #include "Human.h"
 #include "Actor.h"
 #include "Review.h"
+#include "VideoContent.h"
 #include <iostream>
 #include <string>
 #include <vector>
 
-class Film
+class Film : public VideoContent
 {
     int year;
     int views;
@@ -46,5 +47,13 @@ public:
     void printFilmInfo();
 
     std::string GetTitle();
+
+    void play() const override {
+        std::cout << "Playing video " << title << std::endl;
+    }
+
+    void stop() const override {
+        std::cout << "Stopping video " << title << std::endl;
+    }
 
 };
