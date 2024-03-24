@@ -1,17 +1,17 @@
 #pragma once
 #include <iostream>
-#include "people.h"
+#include "human.h"
 using namespace std;
 
 // Copy constructor
-People::People(const People& other) 
+Human::Human(const Human& other)
 {
 	name = other.name;
 	age = other.age;
 }
 
 // Operator =
-People& People::operator=(const People& other)
+Human& Human::operator=(const Human& other)
 {
 	if (this != &other) {
 		name = other.name;
@@ -21,25 +21,25 @@ People& People::operator=(const People& other)
 }
 
 // Move constructor
-People::People(People&& other)noexcept : name(move(other.name)), age(move(other.age))
+Human::Human(Human&& other)noexcept : name(move(other.name)), age(move(other.age))
 {
 	other.name = nullptr;
 	other.age = NULL;
 }
 
-People::~People() {}
+Human::~Human() {}
 
-void People::SetName(string newname)
+void Human::SetName(string newname)
 {
 	this->name = newname;
 }
 
-void People::SetAge(int newage)
+void Human::SetAge(int newage)
 {
 	this->age = newage;
 }
 
-void People::PrintPeopleInfo() {
+void Human::PrintHumanInfo() {
 	cout << "Name: " << this->name << endl;
 	cout << "Age: " << this->age << endl;
 }

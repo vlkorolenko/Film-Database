@@ -6,6 +6,11 @@ std::string Actor::GetActorName() { return name; }
 // Функція для виведення інформації про актора
 void Actor::printActorInfo()
 {
-	People::PrintPeopleInfo();
+	Human::PrintHumanInfo();
 	cout << "Films: " << films << endl;
+}
+
+void Actor::introduce() const
+{
+	std::cout << "Hello! My name is " << name;
 }

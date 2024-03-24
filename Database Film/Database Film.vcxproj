@@ -131,14 +131,14 @@
     <ClCompile Include="baseFilms.cpp" />
     <ClCompile Include="Database Film.cpp" />
     <ClCompile Include="Film.cpp" />
-    <ClCompile Include="People.cpp" />
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="Review.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="baseFilms.h" />
     <ClInclude Include="Film.h" />
-    <ClInclude Include="People.h" />
+    <ClInclude Include="Human.h" />
     <ClInclude Include="Review.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

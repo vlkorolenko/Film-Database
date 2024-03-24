@@ -1,24 +1,26 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "People.h"
+#include "Human.h"
 
-class Actor : public People
+class Actor : public Human
 {
 
 	std::string films;
 
 public:
 
-	Actor() : People(), films("") {}
-	Actor(std::string n) : People(n), films("") {}
-	Actor(std::string n, int a) : People(n, a), films("") {}
-	Actor(std::string n, int a, std::string f) : People(n, a), films(f) {}
+	Actor() : Human(), films("") {}
+	Actor(std::string n) : Human(n), films("") {}
+	Actor(std::string n, int a) : Human(n, a), films("") {}
+	Actor(std::string n, int a, std::string f) : Human(n, a), films(f) {}
 
-	Actor(const Actor& other) : People(other.name, other.age), films(other.films) {}
+	Actor(const Actor& other) : Human(other.name, other.age), films(other.films) {}
 
 
 	std::string GetActorName();
 
 	void printActorInfo();
+
+	virtual void introduce() const override;
 };

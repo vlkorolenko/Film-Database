@@ -1,5 +1,5 @@
 #pragma once
-#include "People.h"
+#include "Human.h"
 #include "Actor.h"
 #include "Review.h"
 #include <iostream>
