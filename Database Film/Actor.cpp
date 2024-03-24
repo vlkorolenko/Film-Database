@@ -17,7 +17,7 @@ void Actor::introduce() const
 
 void Actor::getProfession() const
 {
-	std::cout << "Actor\n";
+	std::cout << "Actor\n\n";
 }
 
 void Actor::speak() const

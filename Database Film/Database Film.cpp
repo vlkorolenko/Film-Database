@@ -28,7 +28,7 @@ int main()
     Actor Jessica("J. Michelle Chastain", 46, secondFilm.GetTitle());
     Actor Worthington("S. Worthington", 47, thirdFilm.GetTitle());
     Actor Saldana("Z. Saldana", 45, thirdFilm.GetTitle());
-    Human* Vlad = new Actor("Vlad Korolenko", 18, "Korolenko");
+    Human* Zendaya = new Actor("Zendaya Maree Stoermer Coleman", 27);
 
     firstFilm.addActor(Murphy);
     firstFilm.addActor(Robert);
@@ -70,12 +70,16 @@ int main()
     cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
 
     //Robert.getProfession();
-    Vlad->introduce();
-    Vlad->getProfession();
+    Zendaya->introduce();
+    Zendaya->getProfession();
 
-    delete Vlad;
+    delete Zendaya;
 
- 
-    doSpeak(McConaughey);
+    Human Kovalchuk("Anton Kovalchuk", 17);
+    Actor Korolenko("V. Korolenko", 18);
+    Human& Holubchuk = Korolenko;
+    Kovalchuk.speak();
+    doSpeak(Holubchuk);
+    doSpeak(Korolenko);
 
 }

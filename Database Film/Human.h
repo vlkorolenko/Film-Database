@@ -28,7 +28,7 @@ public:
 	void SetAge(int age);
 	void PrintHumanInfo();
 
-	virtual void introduce() const = 0;
-	virtual void getProfession() const = 0;
-	void speak() const;
+	virtual void introduce() const;
+	virtual void getProfession() const;
+	virtual void speak() const;
 };

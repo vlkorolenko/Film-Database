@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Human.h"
 
-class Actor : public Human
+class Actor final: public Human 
 {
 
 	std::string films;
