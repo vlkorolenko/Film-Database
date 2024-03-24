@@ -12,5 +12,15 @@ void Actor::printActorInfo()
 
 void Actor::introduce() const
 {
-	std::cout << "Hello! My name is " << name;
+	std::cout << "Hello! My name is " << name << endl;
+}
+
+void Actor::getProfession() const
+{
+	std::cout << "Actor\n";
+}
+
+void Actor::speak() const
+{
+	std::cout << "I am an actor\n";
 }

@@ -21,6 +21,7 @@ public:
 	Human(const Human& other);				// Copy constructor
 	Human(Human&& other) noexcept;			// Move constructor
 	Human& operator = (const Human& other);	// Operator =
+
 	~Human();
 
 	void SetName(string name);
@@ -28,4 +29,6 @@ public:
 	void PrintHumanInfo();
 
 	virtual void introduce() const = 0;
+	virtual void getProfession() const = 0;
+	void speak() const;
 };

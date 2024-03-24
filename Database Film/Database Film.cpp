@@ -8,6 +8,11 @@
 
 using namespace std;
 
+void doSpeak(const Human& human)
+{
+    human.speak();
+}
+
 int main()
 {
 
@@ -23,6 +28,7 @@ int main()
     Actor Jessica("J. Michelle Chastain", 46, secondFilm.GetTitle());
     Actor Worthington("S. Worthington", 47, thirdFilm.GetTitle());
     Actor Saldana("Z. Saldana", 45, thirdFilm.GetTitle());
+    Human* Vlad = new Actor("Vlad Korolenko", 18, "Korolenko");
 
     firstFilm.addActor(Murphy);
     firstFilm.addActor(Robert);
@@ -62,5 +68,14 @@ int main()
     }
 
     cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
+
+    //Robert.getProfession();
+    Vlad->introduce();
+    Vlad->getProfession();
+
+    delete Vlad;
+
+ 
+    doSpeak(McConaughey);
 
 }

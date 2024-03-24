@@ -23,4 +23,7 @@ public:
 	void printActorInfo();
 
 	virtual void introduce() const override;
+	virtual void getProfession() const override;
+	void speak() const;
+	
 };

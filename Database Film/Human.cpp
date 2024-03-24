@@ -43,3 +43,8 @@ void Human::PrintHumanInfo() {
 	cout << "Name: " << this->name << endl;
 	cout << "Age: " << this->age << endl;
 }
+
+void Human::speak() const
+{
+	cout << "I am a human\n";
+}
