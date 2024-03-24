@@ -17,6 +17,7 @@ public:
 
 	Actor(const Actor& other) : Human(other.name, other.age), films(other.films) {}
 
+	virtual ~Actor() {};
 
 	std::string GetActorName();
 
@@ -25,5 +26,7 @@ public:
 	virtual void introduce() const override;
 	virtual void getProfession() const override;
 	void speak() const;
+
+
 	
 };

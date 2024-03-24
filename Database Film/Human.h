@@ -22,7 +22,7 @@ public:
 	Human(Human&& other) noexcept;			// Move constructor
 	Human& operator = (const Human& other);	// Operator =
 
-	~Human();
+	virtual ~Human();
 
 	void SetName(string name);
 	void SetAge(int age);
