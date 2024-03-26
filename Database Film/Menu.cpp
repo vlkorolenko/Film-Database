@@ -1,21 +1,22 @@
 #include "Menu.h"
 
-void Menu::open()
+int Menu::open()
 {
 	
     bool menuIsOpen = true;
     while (menuIsOpen)
     {
-        std::cout << "\n*MENU*\n";
+        std::cout << "\n===MENU===\n";
         std::cout << "1. Movie list\n";
         std::cout << "2. Add movie\n";
         std::cout << "3. Remove movie\n";
         std::cout << "4. Reviews\n";
         std::cout << "5. Actors\n";
+        std::cout << "6. Exit\n";
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
-        while (option < 1 || option > 5)
+        while (option < 1 || option > 6)
         {
             std::cout << "Incorrect option. \nTry again: ";
             std::cin >> option;
@@ -37,6 +38,9 @@ void Menu::open()
         case 5:
             baseFilm.printAllActorsInfo();
             break;
+        case 6:
+            cout << "Exiting...\n";
+            return 0;
         }
         int variant = 0;
         do {
@@ -52,7 +56,7 @@ void Menu::open()
             if (variant == 2)
             {
                 cout << "Exiting...\n";
-                menuIsOpen = false;
+                return 0;
             }
             else
             {
@@ -63,5 +67,5 @@ void Menu::open()
     }
 
 
-	
+
 }

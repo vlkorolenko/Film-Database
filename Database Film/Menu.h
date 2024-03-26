@@ -9,6 +9,6 @@ private:
 	baseFilms& baseFilm;
 public:
 	Menu(baseFilms& baseFilm) : baseFilm(baseFilm) {}
-	void open();
+	int open();
 };
 

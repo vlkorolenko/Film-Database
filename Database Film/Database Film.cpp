@@ -6,6 +6,7 @@
 #include "baseFilms.h"
 #include "Actor.h"
 #include "Menu.h"
+#include "UserManager.h"
 using namespace std;
 
 void doSpeak(const Human& human)
@@ -53,6 +54,53 @@ int main()
     baseFilms.addActor(Robert);
     baseFilms.addActor(McConaughey);
     baseFilms.addActor(Jessica);
+
+    UserManager userManager;
+    std::string username, password;
+    char choice;
+
+    std::cout << "\n=== Login Menu ===\n";
+    std::cout << "1. Register\n";
+    std::cout << "2. Login\n";
+    std::cout << "3. Exit\n";
+    std::cout << "Enter your choice: ";
+    std::cin >> choice;
+    bool complete = false;
+    // Меню входу
+    do {
+
+
+        switch (choice)
+        {
+        case '1':
+        {
+            std::cout << "Enter username: ";
+            std::cin >> username;
+            std::cout << "Enter password: ";
+            std::cin >> password;
+            userManager.registerUser(username, password);
+            complete = true;
+            break;
+        }
+        case '2':
+        {
+            std::cout << "Enter username: ";
+            std::cin >> username;
+            std::cout << "Enter password: ";
+            std::cin >> password;
+            userManager.loginUser(username, password);
+            complete = true;
+            break;
+        }
+        case '3':
+            std::cout << "Exiting..." << std::endl;
+            return 0;
+        default:
+            std::cout << "Invalid choice. Please try again." << std::endl;
+        }
+    } while (complete==false);
+
+
 
     Menu menu(baseFilms);
     menu.open();

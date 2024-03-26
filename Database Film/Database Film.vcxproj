@@ -134,6 +134,7 @@
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Review.cpp" />
+    <ClCompile Include="UserManager.cpp" />
     <ClCompile Include="VideoContent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +144,11 @@
     <ClInclude Include="Human.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Review.h" />
+    <ClInclude Include="UserManager.h" />
     <ClInclude Include="VideoContent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="users.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
