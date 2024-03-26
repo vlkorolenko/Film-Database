@@ -32,3 +32,30 @@ void baseFilms::printAllInfo()
         review.printReview();
     }
 }
+
+void baseFilms::printAllFilmsInfo()
+{
+    cout << "\n";
+    for (Film film : films)
+    {
+        film.printFilmInfo();
+    }
+}
+
+void baseFilms::printAllActorsInfo()
+{
+    cout << "\n";
+    for (Actor actor : actors)
+    {
+        actor.printActorInfo();
+    }
+}
+
+void baseFilms::printAllReviewsInfo()
+{
+    cout << "\n";
+    for (Review review : reviews)
+    {
+        review.printReview();
+    }
+}

@@ -8,6 +8,7 @@ void Actor::printActorInfo()
 {
 	Human::PrintHumanInfo();
 	cout << "Films: " << films << endl;
+	std::cout << "-------------" << std::endl;
 }
 
 void Actor::introduce() const
