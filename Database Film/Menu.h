@@ -2,10 +2,13 @@
 #include <iostream>
 #include "Film.h"
 #include "baseFilms.h"
-
+class baseFilms;
 class Menu
 {
+private:
+	baseFilms& baseFilm;
 public:
-	int open();
+	Menu(baseFilms& baseFilm) : baseFilm(baseFilm) {}
+	void open();
 };
 

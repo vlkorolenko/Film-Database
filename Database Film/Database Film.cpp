@@ -54,35 +54,9 @@ int main()
     baseFilms.addActor(McConaughey);
     baseFilms.addActor(Jessica);
 
-    Menu menu;
-    bool menuIsOpen = true;
-    while (menuIsOpen)
-    {
-        switch (menu.open())
-        {
-        case 1:
-            baseFilms.printAllFilmsInfo();
-            break;
-        case 2:
-            cout << "soon\n";
-            break;
-        case 3:
-            cout << "soon\n";
-            break;
-        case 4:
-            baseFilms.printAllReviewsInfo();
-            break;
-        case 5:
-            baseFilms.printAllActorsInfo();
-            break;
-        }
-        cout << "\n1. Back to menu";
-        cout << "\n2. Exit\n";
-        cout << "Choose option: ";
-        int variant;
-        cin >> variant;
-        if (variant == 2) return 0;
-    }
+    Menu menu(baseFilms);
+    menu.open();
+   
     //baseFilms.printAllInfo(); !!!
 
     // Приклад роботи перевантаження унарного оператора '++'
