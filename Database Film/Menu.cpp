@@ -74,8 +74,8 @@ void Menu::displayFilmList()
 
 int Menu::open()
 {
-
     bool menuIsOpen = true;
+
     while (menuIsOpen)
     {
         std::cout << "\n*MENU*\n";
@@ -88,7 +88,7 @@ int Menu::open()
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
-        while (option < 1 || option > 5)
+        while (option < 1 || option > 6)
         {
             std::cout << "Incorrect option. \nTry again: ";
             std::cin >> option;
@@ -138,11 +138,67 @@ int Menu::open()
                 break;
             }
         } while (variant != 1);
-
     }
+}
 
+int Menu::userMenu()
+{
+    bool menuIsOpen = true;
 
-
+    while (menuIsOpen)
+    {
+        std::cout << "\n*MENU*\n";
+        std::cout << "1. Movie list\n";
+        std::cout << "2. Reviews\n";
+        std::cout << "3. Actors\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Choose option: ";
+        int option;
+        std::cin >> option;
+        while (option < 1 || option > 6)
+        {
+            std::cout << "Incorrect option. \nTry again: ";
+            std::cin >> option;
+        }
+        switch (option)
+        {
+        case 1:
+            cout << endl;
+            displayFilmList();
+            break;
+        case 2:
+            baseFilm.printAllReviewsInfo();
+            break;
+        case 3:
+            baseFilm.printAllActorsInfo();
+            break;
+        case 4:
+            cout << "Exiting...\n";
+            return 0;   
+        }
+        int variant = 0;
+        do {
+            cout << "\n1. Back to menu";
+            cout << "\n2. Exit\n";
+            cout << "Choose option: ";
+            cin >> variant;
+            while (variant < 1 || variant > 2)
+            {
+                std::cout << "Incorrect option. \nTry again: ";
+                std::cin >> variant;
+            }
+            if (variant == 2)
+            {
+                cout << "Exiting...\n";
+                return 0;
+            }
+            else
+            {
+                system("cls");
+                break;
+            }
+        } while (variant != 1);
+    }
 }
 
 void Menu::deleteFilm()

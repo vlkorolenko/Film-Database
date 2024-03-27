@@ -17,12 +17,8 @@ void doSpeak(const Human& human)
 int main()
 {  
     baseFilms baseFilms;
+    Menu menu(baseFilms);
 
-    ////** Інформація про фільм
-    //Film firstFilm("Oppenheimer", 2023, "Biographical thriller film", "C. Nolan", 17873921);
-    //Film secondFilm("Interstellar", 2014, "Science fiction film", "C. Nolan", 1674386490);
-    //Film thirdFilm("Avatar", 2009, "Epic science fiction film", "J. Cameron", 1478902);
-    //
     //// Інформація про акторів
     //Actor Murphy("K. Murphy", 47, firstFilm.GetTitle());
     //Actor McConaughey("M. McConaughey", 54, secondFilm.GetTitle());
@@ -32,14 +28,7 @@ int main()
     //Actor Saldana("Z. Saldana", 45, thirdFilm.GetTitle());
     //Human* Zendaya = new Actor("Zendaya Maree Stoermer Coleman", 27);
 
-    //firstFilm.addActor(Murphy);
-    //firstFilm.addActor(Robert);
-    //secondFilm.addActor(McConaughey);
-    //secondFilm.addActor(Jessica);
-    //thirdFilm.addActor(Worthington);
-    //thirdFilm.addActor(Saldana);
-
-    //// Інформація про відгуки 
+    // Інформація про відгуки 
     const Review FIRST_REVIEW("Oppenheimer", "vlkorolenko", 4.5, "20.02.2024");
     const Review SECOND_REVIEW("Interstellar", "vladb123", 4.9, "13.09.2016");
     const Review THIRD_REVIEW("Avatar", "absd", 3.1, "07.11.2010");
@@ -47,17 +36,6 @@ int main()
     baseFilms.addReviewInfo(FIRST_REVIEW);
     baseFilms.addReviewInfo(SECOND_REVIEW);
     baseFilms.addReviewInfo(THIRD_REVIEW);
-
-    ////baseFilms baseFilms;    // Оголошення бази данних
-
-    //// Внесення і-ції про фільм, відгуки та акторів до БД
-    //baseFilms.addFilmInfo(firstFilm, FIRST_REVIEW);
-    //baseFilms.addFilmInfo(secondFilm, SECOND_REVIEW);
-    //baseFilms.addFilmInfo(thirdFilm, THIRD_REVIEW);
-    //baseFilms.addActor(Murphy);
-    //baseFilms.addActor(Robert);
-    //baseFilms.addActor(McConaughey);
-    //baseFilms.addActor(Jessica);
 
     UserManager userManager;
     std::string username, password;
@@ -113,16 +91,12 @@ int main()
     } while (complete==false);
 
 
+    if (username == "admin")
+    {
+        menu.open();
+    }
+    else { menu.userMenu(); }
 
-    Menu menu(baseFilms);
-    menu.open();
-   
-    //baseFilms.printAllInfo(); !!!
-
-    // Приклад роботи перевантаження унарного оператора '++'
-    /*++firstFilm;                    
-    cout << endl;*/
-    //firstFilm.printFilmInfo(); !!!
 
     // Приклад роботи перевантаження бінарного оператора '=='
     /*if (firstFilm == 2023)          

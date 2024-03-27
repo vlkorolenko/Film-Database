@@ -17,5 +17,6 @@ public:
 	void addFilmToFile(const Film& film);
 	void displayFilmList();
 	int open();
+	int userMenu();
 	void deleteFilm();
 };

@@ -4,10 +4,10 @@ int Film::totalFilms = 0;
 
 std::string Film::GetTitle() { return title; }
 
-void Film::printInfo() const
-{
-	std::cout << "Title: " << title << ", Year: " << year << ", Genre: " << genre << ", Director: " << director << ", Views: " << views << std::endl;
-}
+//void Film::printInfo() const
+//{
+//	std::cout << "Title: " << title << ", Year: " << year << ", Genre: " << genre << ", Director: " << director << ", Views: " << views << std::endl;
+//}
 
 // Виведення інформації про кількість фільмів у базі даних
 int Film::getTotalFilms() { return totalFilms; }
@@ -24,8 +24,6 @@ Film& Film::operator++()
 
 // Перевантаження бінарного оператору 
 bool Film::operator==(int otherYear) const { return this->year == otherYear; }
-
-
 
 // Виведення інформації про фільм та акторів
 void Film::printFilmInfo()

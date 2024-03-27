@@ -41,7 +41,6 @@ public:
    //     this->actors = other.actors;
    // }
 
-    void printInfo() const;
     static int getTotalFilms();
 
     void addActor(Actor actor);
