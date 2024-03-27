@@ -1,5 +1,20 @@
 #include "Menu.h"
 
+string Menu::getCurrentDate()
+{
+    // Отримуємо поточний час
+    auto now = std::chrono::system_clock::now();
+
+    // Перетворюємо поточний час у часову точку
+    std::time_t nowTime = std::chrono::system_clock::to_time_t(now);
+
+    // Форматуємо час у рядок
+    std::string currentDate = std::ctime(&nowTime);
+
+    // Повертаємо рядок
+    return currentDate;
+}
+
 void Menu::addFilm()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
@@ -20,6 +35,36 @@ void Menu::addFilm()
     addFilmToFile(newFilm);
 }
 
+void Menu::addReview()
+{
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
+
+    // Додавання відгуку
+    Review newReview;
+    std::cout << "Enter review details:" << std::endl;
+    std::cout << "Film: ";
+    std::getline(std::cin, newReview.film);
+    newReview.user = username;
+    std::cout << "Rate: ";
+    std::cin >> newReview.rate;
+    while (newReview.rate < 0 or newReview.rate > 5)
+    {
+        std::cout << "The rate must be between 0 and 5!\nTry again: ";
+        std::cin >> newReview.rate;
+    }
+    /*if (newReview.rate < 0 or newReview.rate > 5)
+    {
+        do
+        {
+            std::cout << "The rate must be between 0 and 5!\nTry again: ";
+            std::cin >> newReview.rate;
+        } while (newReview.rate < 0 or newReview.rate > 5);
+    }*/
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
+    newReview.date = getCurrentDate();
+    addReviewToFile(newReview);
+}
+
 void Menu::addFilmToFile(const Film& film)
 {
     std::ofstream file("films.txt", std::ios::app);
@@ -27,11 +72,26 @@ void Menu::addFilmToFile(const Film& film)
     {
         file << film.title << "," << film.year << "," << film.genre << "," << film.director << "," << film.views << std::endl;
         file.close();
-        std::cout << "Film added successfully." << std::endl;
+        std::cout << "\nFilm added successfully." << std::endl;
     }
     else
     {
-        std::cout << "Unable to open file." << std::endl;
+        std::cout << "\nUnable to open file." << std::endl;
+    }
+}
+
+void Menu::addReviewToFile(const Review& review)
+{
+    std::ofstream file("reviews.txt", std::ios::app);
+    if (file.is_open())
+    {
+        file << review.film << "," << review.user << "," << review.rate << "," << review.date;
+        file.close();
+        std::cout << "\nReview added successfully." << std::endl;
+    }
+    else
+    {
+        std::cout << "\nUnable to open file." << std::endl;
     }
 }
 
@@ -72,132 +132,38 @@ void Menu::displayFilmList()
     }
 }
 
-int Menu::open()
+void Menu::displayReviewList()
 {
-    bool menuIsOpen = true;
-
-    while (menuIsOpen)
+    // Перегляд списку фільмів
+    std::ifstream file("reviews.txt");
+    if (file.is_open())
     {
-        std::cout << "\n*MENU*\n";
-        std::cout << "1. Movie list\n";
-        std::cout << "2. Add movie\n";
-        std::cout << "3. Remove movie\n";
-        std::cout << "4. Reviews\n";
-        std::cout << "5. Actors\n";
-        std::cout << "6. Exit\n";
-        std::cout << "Choose option: ";
-        int option;
-        std::cin >> option;
-        while (option < 1 || option > 6)
+        std::string line;
+        while (std::getline(file, line))
         {
-            std::cout << "Incorrect option. \nTry again: ";
-            std::cin >> option;
+            // Використовуйте стрічковий потік для розбиття рядка на поля
+            std::istringstream iss(line);
+            std::string film, user, date;
+            double rate;
+
+            // Розбиття рядка на поля за допомогою коми як роздільника
+            std::getline(iss, film, ',');
+            std::getline(iss, user, ',');
+            iss >> rate; iss.ignore(); // Пропустити кому та прочитати рік
+            std::getline(iss, date, ',');
+
+            // Вивід інформації про фільм у вказаному форматі
+            std::cout << "Film: " << film << std::endl;
+            std::cout << "User: " << user << std::endl;
+            std::cout << "Rate: " << rate << std::endl;
+            std::cout << "Date: " << date << std::endl;
+            std::cout << "-------------\n"; // Порожній рядок для розділення фільмів
         }
-        switch (option)
-        {
-        case 1:
-            cout << endl;
-            displayFilmList();
-            break;
-        case 2:
-            //cout << "soon\n";
-            addFilm();
-            break;
-        case 3:
-            deleteFilm();
-            break;
-        case 4:
-            baseFilm.printAllReviewsInfo();
-            break;
-        case 5:
-            baseFilm.printAllActorsInfo();
-            break;
-        case 6:
-            cout << "Exiting...\n";
-            return 0;
-        }
-        int variant = 0;
-        do {
-            cout << "\n1. Back to menu";
-            cout << "\n2. Exit\n";
-            cout << "Choose option: ";
-            cin >> variant;
-            while (variant < 1 || variant > 2)
-            {
-                std::cout << "Incorrect option. \nTry again: ";
-                std::cin >> variant;
-            }
-            if (variant == 2)
-            {
-                cout << "Exiting...\n";
-                return 0;
-            }
-            else
-            {
-                system("cls");
-                break;
-            }
-        } while (variant != 1);
+        file.close();
     }
-}
-
-int Menu::userMenu()
-{
-    bool menuIsOpen = true;
-
-    while (menuIsOpen)
+    else
     {
-        std::cout << "\n*MENU*\n";
-        std::cout << "1. Movie list\n";
-        std::cout << "2. Reviews\n";
-        std::cout << "3. Actors\n";
-        std::cout << "4. Exit\n";
-        std::cout << "Choose option: ";
-        int option;
-        std::cin >> option;
-        while (option < 1 || option > 6)
-        {
-            std::cout << "Incorrect option. \nTry again: ";
-            std::cin >> option;
-        }
-        switch (option)
-        {
-        case 1:
-            cout << endl;
-            displayFilmList();
-            break;
-        case 2:
-            baseFilm.printAllReviewsInfo();
-            break;
-        case 3:
-            baseFilm.printAllActorsInfo();
-            break;
-        case 4:
-            cout << "Exiting...\n";
-            return 0;   
-        }
-        int variant = 0;
-        do {
-            cout << "\n1. Back to menu";
-            cout << "\n2. Exit\n";
-            cout << "Choose option: ";
-            cin >> variant;
-            while (variant < 1 || variant > 2)
-            {
-                std::cout << "Incorrect option. \nTry again: ";
-                std::cin >> variant;
-            }
-            if (variant == 2)
-            {
-                cout << "Exiting...\n";
-                return 0;
-            }
-            else
-            {
-                system("cls");
-                break;
-            }
-        } while (variant != 1);
+        std::cout << "Unable to open file." << std::endl;
     }
 }
 
@@ -261,5 +227,142 @@ void Menu::deleteFilm()
     else
     {
         std::cout << "Film not found." << std::endl;
+    }
+}
+
+
+int Menu::open()
+{
+    bool menuIsOpen = true;
+
+    while (menuIsOpen)
+    {
+        std::cout << "\n*MENU*\n";
+        std::cout << "1. Movie list\n";
+        std::cout << "2. Add movie\n";
+        std::cout << "3. Remove movie\n";
+        std::cout << "4. Reviews\n";
+        std::cout << "5. Add review\n";
+        std::cout << "6. Actors\n";
+        std::cout << "7. Exit\n";
+        std::cout << "Choose option: ";
+        int option;
+        std::cin >> option;
+        while (option < 1 || option > 7)
+        {
+            std::cout << "Incorrect option. \nTry again: ";
+            std::cin >> option;
+        }
+        switch (option)
+        {
+        case 1:
+            cout << endl;
+            displayFilmList();
+            break;
+        case 2:
+            addFilm();
+            break;
+        case 3:
+            deleteFilm();
+            break;
+        case 4:
+            displayReviewList();
+            break;
+        case 5:
+            addReview();
+            break;
+        case 6:
+            cout << "Soon...\n";
+            break;
+        case 7:
+            cout << "Exiting...\n";
+            return 0;
+        }
+        int variant = 0;
+        do {
+            cout << "\n1. Back to menu";
+            cout << "\n2. Exit\n";
+            cout << "Choose option: ";
+            cin >> variant;
+            while (variant < 1 || variant > 2)
+            {
+                std::cout << "Incorrect option. \nTry again: ";
+                std::cin >> variant;
+            }
+            if (variant == 2)
+            {
+                cout << "Exiting...\n";
+                return 0;
+            }
+            else
+            {
+                system("cls");
+                break;
+            }
+        } while (variant != 1);
+    }
+}
+
+int Menu::userMenu()
+{
+    bool menuIsOpen = true;
+
+    while (menuIsOpen)
+    {
+        std::cout << "\n*MENU*\n";
+        std::cout << "1. Movie list\n";
+        std::cout << "2. Reviews\n";
+        std::cout << "3. Add review\n";
+        std::cout << "4. Actors\n";
+        std::cout << "5. Exit\n";
+        std::cout << "Choose option: ";
+        int option;
+        std::cin >> option;
+        while (option < 1 || option > 5)
+        {
+            std::cout << "Incorrect option. \nTry again: ";
+            std::cin >> option;
+        }
+        switch (option)
+        {
+        case 1:
+            cout << endl;
+            displayFilmList();
+            break;
+        case 2:
+            displayReviewList();
+            break;
+        case 3:
+            addReview();
+            break;
+        case 4:
+            baseFilm.printAllActorsInfo();
+            break;
+        case 5:
+            cout << "Exiting...\n";
+            return 0;   
+        }
+        int variant = 0;
+        do {
+            cout << "\n1. Back to menu";
+            cout << "\n2. Exit\n";
+            cout << "Choose option: ";
+            cin >> variant;
+            while (variant < 1 || variant > 2)
+            {
+                std::cout << "Incorrect option. \nTry again: ";
+                std::cin >> variant;
+            }
+            if (variant == 2)
+            {
+                cout << "Exiting...\n";
+                return 0;
+            }
+            else
+            {
+                system("cls");
+                break;
+            }
+        } while (variant != 1);
     }
 }

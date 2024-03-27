@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include "Film.h"
 #include "Review.h"
 #include "baseFilms.h"
@@ -17,7 +18,7 @@ void doSpeak(const Human& human)
 int main()
 {  
     baseFilms baseFilms;
-    Menu menu(baseFilms);
+
 
     //// Інформація про акторів
     //Actor Murphy("K. Murphy", 47, firstFilm.GetTitle());
@@ -27,15 +28,6 @@ int main()
     //Actor Worthington("S. Worthington", 47, thirdFilm.GetTitle());
     //Actor Saldana("Z. Saldana", 45, thirdFilm.GetTitle());
     //Human* Zendaya = new Actor("Zendaya Maree Stoermer Coleman", 27);
-
-    // Інформація про відгуки 
-    const Review FIRST_REVIEW("Oppenheimer", "vlkorolenko", 4.5, "20.02.2024");
-    const Review SECOND_REVIEW("Interstellar", "vladb123", 4.9, "13.09.2016");
-    const Review THIRD_REVIEW("Avatar", "absd", 3.1, "07.11.2010");
-
-    baseFilms.addReviewInfo(FIRST_REVIEW);
-    baseFilms.addReviewInfo(SECOND_REVIEW);
-    baseFilms.addReviewInfo(THIRD_REVIEW);
 
     UserManager userManager;
     std::string username, password;
@@ -48,6 +40,7 @@ int main()
     std::cout << "Enter your choice: ";
     std::cin >> choice;
     bool complete = false;
+
     // Меню входу
     do {
 
@@ -90,7 +83,7 @@ int main()
         }
     } while (complete==false);
 
-
+    Menu menu(baseFilms, username);
     if (username == "admin")
     {
         menu.open();

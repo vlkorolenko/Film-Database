@@ -38,6 +38,7 @@ bool UserManager::registerUser(const std::string& username, const std::string& p
     }
 
     users.emplace_back(username, password);
+    system("cls");
     std::cout << "User registered successfully." << std::endl;
     saveUsersToFile();
     return true;
@@ -50,6 +51,7 @@ bool UserManager::loginUser(const std::string& username, const std::string& pass
 
             if (it != users.end())
             {
+                system("cls");
                 std::cout << "Login successful. Welcome, " << username << "!" << std::endl;
                 return true;
             }       

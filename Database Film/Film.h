@@ -48,17 +48,9 @@ public:
     Film& operator++();                     // Перевантаження унарного оператору для збільшення кількості переглядів фільму
     bool operator==(int otherYear) const;   // Перевантаження бінарного оператору для порівняння фільмів по року випуску
 
-    friend std::ostream& operator<<(std::ostream& os, const Film& film)
-    {
-         os << "Title: " << film.title << "\nYear: " << film.year << "\nGenre: " << film.genre << "\nDirector: " << film.director << "\nViews: " << film.views;
-        return os;
-    }
-
-    friend std::istream& operator>>(std::istream& is, Film& film)
-    {
-        is >> film.title >> film.year >> film.genre >> film.director >> film.views;
-        return is;
-    }
+    friend std::ostream& operator<<(std::ostream& os, const Film& film);
+    friend std::istream& operator>>(std::istream& is, Film& film);
+ 
 
     void printFilmInfo();
 
