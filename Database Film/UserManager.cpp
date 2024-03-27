@@ -33,7 +33,7 @@ bool UserManager::registerUser(const std::string& username, const std::string& p
 
     if (it != users.end())
     {
-        std::cout << "User with this username already exists." << std::endl;
+        std::cout << "User with this username already exists. Try again." << std::endl;
         return false;
     }
 
@@ -45,14 +45,14 @@ bool UserManager::registerUser(const std::string& username, const std::string& p
 
 bool UserManager::loginUser(const std::string& username, const std::string& password)
 {
-    auto it = std::find_if(users.begin(), users.end(), [&](const auto& user) 
-        { return user.first == username && user.second == password; });
+        auto it = std::find_if(users.begin(), users.end(), [&](const auto& user)
+            { return user.first == username && user.second == password; });
 
-    if (it != users.end())
-    {
-        std::cout << "Login successful. Welcome, " << username << "!" << std::endl;
-        return true;
-    }
-    std::cout << "Invalid username or password." << std::endl;
-    return false;
+            if (it != users.end())
+            {
+                std::cout << "Login successful. Welcome, " << username << "!" << std::endl;
+                return true;
+            }       
+        std::cout << "Invalid username or password. Try again." << std::endl;
+        return false;
 }

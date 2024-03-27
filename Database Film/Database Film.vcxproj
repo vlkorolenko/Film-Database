@@ -148,6 +148,7 @@
     <ClInclude Include="VideoContent.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="films.txt" />
     <Text Include="users.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

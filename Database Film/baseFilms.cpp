@@ -4,9 +4,14 @@
 void baseFilms::addActor(Actor actor) { actors.push_back(actor); }
 
 // Функція для додавання інформації про фільм у базу даних
-void baseFilms::addFilmInfo(Film film, Review review)
+void baseFilms::addFilmInfo(Film film)
 {
     films.push_back(film);
+    //reviews.push_back(review);
+}
+
+void baseFilms::addReviewInfo(Review review)
+{
     reviews.push_back(review);
 }
 
@@ -36,9 +41,9 @@ void baseFilms::printAllInfo()
 void baseFilms::printAllFilmsInfo()
 {
     cout << "\n";
-    for (Film film : films)
+    for (Film newFilm : films)
     {
-        film.printFilmInfo();
+        newFilm.printFilmInfo();
     }
 }
 

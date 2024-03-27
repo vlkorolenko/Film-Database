@@ -17,8 +17,8 @@ public:
 
     void addActor(Actor actor);
 
-    void addFilmInfo(Film film, Review review); // Метод для додавання інформації до бази даних
-
+    void addFilmInfo(Film film); // Метод для додавання інформації до бази даних
+    void addReviewInfo(Review review);
     void printAllInfo();                        // Метод для виведення інформації про фільми та відгуки
     void printAllFilmsInfo();
     void printAllActorsInfo();

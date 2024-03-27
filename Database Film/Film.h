@@ -6,9 +6,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
-class Film : public VideoContent
+class Film 
 {
+
+    
+
+public:
+
     int year;
     int views;
     static int totalFilms;
@@ -17,26 +23,25 @@ class Film : public VideoContent
     std::string genre;
     std::vector<Actor> actors;
 
-public:
+   //// Перевантажені конструктори з використанням делегування конструкторів
+   // Film(std::string t) : Film(t, 0, "", "", 0) { totalFilms++; }
+   // Film(std::string t, int y) : Film(t, y, "", "", 0) { totalFilms++; }
+   // Film(std::string t, int y, std::string g) : Film(t, y, g, "", 0) { totalFilms++; }
+   // Film(std::string t, int y, std::string g, std::string d) : Film(t, y, g, d, 0) { totalFilms++; }
+   // Film(std::string t, int y, std::string g, std::string d, int v) : title(t), year(y), genre(g), director(d), views(v) { totalFilms++; }
 
-    // Перевантажені конструктори з використанням делегування конструкторів
-    Film(std::string t) : Film(t, 0, "", "", 0) { totalFilms++; }
-    Film(std::string t, int y) : Film(t, y, "", "", 0) { totalFilms++; }
-    Film(std::string t, int y, std::string g) : Film(t, y, g, "", 0) { totalFilms++; }
-    Film(std::string t, int y, std::string g, std::string d) : Film(t, y, g, d, 0) { totalFilms++; }
-    Film(std::string t, int y, std::string g, std::string d, int v) : title(t), year(y), genre(g), director(d), views(v) { totalFilms++; }
+   // // Конструктор копіювання
+   // Film(const Film& other)
+   // {
+   //     this->title = other.title;
+   //     this->year = other.year;
+   //     this->genre = other.genre;
+   //     this->director = other.director;
+   //     this->views = other.views;
+   //     this->actors = other.actors;
+   // }
 
-    // Конструктор копіювання
-    Film(const Film& other)
-    {
-        this->title = other.title;
-        this->year = other.year;
-        this->genre = other.genre;
-        this->director = other.director;
-        this->views = other.views;
-        this->actors = other.actors;
-    }
-
+    void printInfo() const;
     static int getTotalFilms();
 
     void addActor(Actor actor);
@@ -44,16 +49,27 @@ public:
     Film& operator++();                     // Перевантаження унарного оператору для збільшення кількості переглядів фільму
     bool operator==(int otherYear) const;   // Перевантаження бінарного оператору для порівняння фільмів по року випуску
 
+    friend std::ostream& operator<<(std::ostream& os, const Film& film)
+    {
+         os << "Title: " << film.title << "\nYear: " << film.year << "\nGenre: " << film.genre << "\nDirector: " << film.director << "\nViews: " << film.views;
+        return os;
+    }
+
+    friend std::istream& operator>>(std::istream& is, Film& film)
+    {
+        is >> film.title >> film.year >> film.genre >> film.director >> film.views;
+        return is;
+    }
+
     void printFilmInfo();
 
     std::string GetTitle();
 
-    void play() const override {
+ /*   void play() const override {
         std::cout << "Playing video " << title << std::endl;
     }
 
     void stop() const override {
         std::cout << "Stopping video " << title << std::endl;
-    }
-
+    }*/
 };
