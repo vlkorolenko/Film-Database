@@ -33,6 +33,7 @@ void Menu::addFilm()
     std::getline(std::cin, newFilm.director);
     newFilm.views = 0; // Початкове значення кількості переглядів
     addFilmToFile(newFilm);
+    logAction("Added a film", username);
 }
 
 void Menu::addReview()
@@ -63,6 +64,7 @@ void Menu::addReview()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
     newReview.date = getCurrentDate();
     addReviewToFile(newReview);
+    logAction("Left a review", username);
 }
 
 void Menu::addFilmToFile(const Film& film)
@@ -167,6 +169,47 @@ void Menu::displayReviewList()
     }
 }
 
+void Menu::displayLogList()
+{
+    // Перегляд логів
+    std::ifstream file("log.txt");
+    if (file.is_open())
+    {
+        std::string line;
+        while (std::getline(file, line))
+        {
+            cout << line << endl;
+        }
+        file.close();
+    }
+    else
+    {
+        std::cout << "Unable to open file." << std::endl;
+    }
+}
+
+void Menu::logAction(const std::string& action, const std::string& username)
+{
+    auto currentTime = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+
+    std::string timeString = std::ctime(&currentTime);      // Форматування поточного часу   
+
+    timeString.pop_back();                                  // Видалення символу нового рядка з кінця рядка  
+
+    std::ofstream logfile("log.txt", std::ios::app);
+
+    // Запис дії у файл
+    if (logfile.is_open())
+    {
+        logfile << timeString << "\tUsername: " << username << "\tAction: " << action << std::endl;
+        logfile.close();
+    }
+    else
+    {
+        std::cerr << "Error: Unable to open log file!" << std::endl;
+    }
+}
+
 void Menu::deleteFilm()
 {
     std::string titleToDelete;
@@ -228,8 +271,8 @@ void Menu::deleteFilm()
     {
         std::cout << "Film not found." << std::endl;
     }
+    logAction("Deleted a film", username);
 }
-
 
 int Menu::open()
 {
@@ -244,11 +287,12 @@ int Menu::open()
         std::cout << "4. Reviews\n";
         std::cout << "5. Add review\n";
         std::cout << "6. Actors\n";
-        std::cout << "7. Exit\n";
+        std::cout << "7. Logs\n";
+        std::cout << "8. Exit\n";
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
-        while (option < 1 || option > 7)
+        while (option < 1 || option > 8)
         {
             std::cout << "Incorrect option. \nTry again: ";
             std::cin >> option;
@@ -275,7 +319,12 @@ int Menu::open()
             cout << "Soon...\n";
             break;
         case 7:
+            cout << endl;
+            displayLogList();
+            break;
+        case 8:
             cout << "Exiting...\n";
+            logAction("Logged out", username);
             return 0;
         }
         int variant = 0;
@@ -292,6 +341,7 @@ int Menu::open()
             if (variant == 2)
             {
                 cout << "Exiting...\n";
+                logAction("Logged out", username);
                 return 0;
             }
             else
@@ -340,6 +390,7 @@ int Menu::userMenu()
             break;
         case 5:
             cout << "Exiting...\n";
+            logAction("Logged out", username);
             return 0;   
         }
         int variant = 0;
@@ -356,6 +407,7 @@ int Menu::userMenu()
             if (variant == 2)
             {
                 cout << "Exiting...\n";
+                logAction("Logged out", username);
                 return 0;
             }
             else

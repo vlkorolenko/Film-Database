@@ -15,6 +15,8 @@ void doSpeak(const Human& human)
     human.speak();
 }
 
+
+
 int main()
 {  
     baseFilms baseFilms;
@@ -59,6 +61,8 @@ int main()
                 registerSuccessful = userManager.registerUser(username, password);
             } while (!registerSuccessful);
             complete = true;
+            Menu menu(baseFilms, username);
+            menu.logAction("Registered", username);
             break;
         }
         case '2':
@@ -73,6 +77,8 @@ int main()
                 loginSuccessful = userManager.loginUser(username, password);
             } while (!loginSuccessful);
             complete = true;
+            Menu menu(baseFilms, username);
+            menu.logAction("Logged in", username);
             break;
         }
         case '3':

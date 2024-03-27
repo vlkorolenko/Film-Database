@@ -19,6 +19,7 @@ private:
 	string username;
 	void addFilm();
 	void addReview();
+
 public:
 	Menu(baseFilms& baseFilm, const string& user) : baseFilm(baseFilm), username(user) {}
 	void addFilmToFile(const Film& film);
@@ -27,6 +28,10 @@ public:
 
 	void addReviewToFile(const Review& review);
 	void displayReviewList();
+
+	void displayLogList();
+
+	void logAction(const std::string& action, const std::string& username);
 
 	int open();
 	int userMenu();

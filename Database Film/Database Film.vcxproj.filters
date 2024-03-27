@@ -72,5 +72,6 @@
   <ItemGroup>
     <Text Include="users.txt" />
     <Text Include="films.txt" />
+    <Text Include="log.txt" />
   </ItemGroup>
 </Project>

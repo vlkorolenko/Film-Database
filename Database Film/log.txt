@@ -1,0 +1,7 @@
+Thu Mar 28 00:00:50 2024	Username: admin	Action: Logged in
+Thu Mar 28 00:01:14 2024	Username: admin	Action: Left a review
+Thu Mar 28 00:03:03 2024	Username: vlad	Action: Logged in
+Thu Mar 28 00:03:44 2024	Username: vlad	Action: Logged in
+Thu Mar 28 00:03:46 2024	Username: vlad	Action: Logged out
+Thu Mar 28 00:08:34 2024	Username: admin	Action: Logged in
+Thu Mar 28 00:08:45 2024	Username: admin	Action: Logged out
