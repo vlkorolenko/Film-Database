@@ -19,8 +19,7 @@ void doSpeak(const Human& human)
 
 int main()
 {  
-    baseFilms baseFilms;
-
+    //baseFilms baseFilms;
 
     //// Інформація про акторів
     //Actor Murphy("K. Murphy", 47, firstFilm.GetTitle());
@@ -33,69 +32,8 @@ int main()
 
     UserManager userManager;
     std::string username, password;
-    char choice;
-
-    std::cout << "\n=== Login Menu ===\n";
-    std::cout << "1. Register\n";
-    std::cout << "2. Login\n";
-    std::cout << "3. Exit\n";
-    std::cout << "Enter your choice: ";
-    std::cin >> choice;
-    bool complete = false;
-
-    // Меню входу
-    do {
-
-
-        switch (choice)
-        {
-        case '1':
-        {
-            bool registerSuccessful = false;
-            do
-            {
-                std::cout << "Enter username: ";
-                std::cin >> username;
-                std::cout << "Enter password: ";
-                std::cin >> password;
-                registerSuccessful = userManager.registerUser(username, password);
-            } while (!registerSuccessful);
-            complete = true;
-            Menu menu(baseFilms, username);
-            menu.logAction("Registered", username);
-            break;
-        }
-        case '2':
-        {
-            bool loginSuccessful = false;
-            do
-            {
-                std::cout << "Enter username: ";
-                std::cin >> username;
-                std::cout << "Enter password: ";
-                std::cin >> password;
-                loginSuccessful = userManager.loginUser(username, password);
-            } while (!loginSuccessful);
-            complete = true;
-            Menu menu(baseFilms, username);
-            menu.logAction("Logged in", username);
-            break;
-        }
-        case '3':
-            std::cout << "Exiting..." << std::endl;
-            return 0;
-        default:
-            std::cout << "Invalid choice. Please try again." << std::endl;
-        }
-    } while (complete==false);
-
-    Menu menu(baseFilms, username);
-    if (username == "admin")
-    {
-        menu.open();
-    }
-    else { menu.userMenu(); }
-
+    Menu menu(username, userManager);
+    menu.processLoginChoice();
 
     // Приклад роботи перевантаження бінарного оператора '=='
     /*if (firstFilm == 2023)          

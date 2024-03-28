@@ -10,18 +10,22 @@
 #include "Film.h"
 #include "baseFilms.h"
 #include "Review.h"
+#include "UserManager.h"
 
-class baseFilms;
+//class baseFilms;
 class Menu
 {
 private:
-	baseFilms& baseFilm;
+	//baseFilms& baseFilm;
 	string username;
-	void addFilm();
-	void addReview();
+	void addFilm(string username);
+	void addReview(string username);
+	UserManager& userManager;
+	void registerUser();
+	void loginUser();
 
 public:
-	Menu(baseFilms& baseFilm, const string& user) : baseFilm(baseFilm), username(user) {}
+	Menu(const string& user, UserManager& userManager) : username(user), userManager(userManager) {}
 	void addFilmToFile(const Film& film);
 	void displayFilmList();
 	void deleteFilm();
@@ -33,8 +37,12 @@ public:
 
 	void logAction(const std::string& action, const std::string& username);
 
-	int open();
-	int userMenu();
+	int open(string username);
+	int userMenu(string username);
 
 	string getCurrentDate();
+
+	void displayLoginMenu();
+	void processLoginChoice();
+
 };

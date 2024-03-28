@@ -15,7 +15,39 @@ string Menu::getCurrentDate()
     return currentDate;
 }
 
-void Menu::addFilm()
+void Menu::displayLoginMenu()
+{
+    std::cout << "\n=== Login Menu ===\n";
+    std::cout << "1. Register\n";
+    std::cout << "2. Login\n";
+    std::cout << "Enter your choice: ";
+}
+
+void Menu::processLoginChoice()
+{
+    char choice;
+    bool complete = false;
+
+
+        displayLoginMenu();
+        std::cin >> choice;
+
+        switch (choice) {
+        case '1':
+            registerUser();
+            complete = true;
+            break;
+        case '2':
+            loginUser();
+            complete = true;
+            break;
+        default:
+            std::cout << "Invalid choice. Please try again." << std::endl;
+        }
+
+}
+
+void Menu::addFilm(string username)
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
 
@@ -36,7 +68,7 @@ void Menu::addFilm()
     logAction("Added a film", username);
 }
 
-void Menu::addReview()
+void Menu::addReview(string username)
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
 
@@ -274,7 +306,7 @@ void Menu::deleteFilm()
     logAction("Deleted a film", username);
 }
 
-int Menu::open()
+int Menu::open(string username)
 {
     bool menuIsOpen = true;
 
@@ -288,11 +320,12 @@ int Menu::open()
         std::cout << "5. Add review\n";
         std::cout << "6. Actors\n";
         std::cout << "7. Logs\n";
-        std::cout << "8. Exit\n";
+        std::cout << "8. Change account\n";
+        std::cout << "9. Exit\n";
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
-        while (option < 1 || option > 8)
+        while (option < 1 || option > 9)
         {
             std::cout << "Incorrect option. \nTry again: ";
             std::cin >> option;
@@ -300,29 +333,37 @@ int Menu::open()
         switch (option)
         {
         case 1:
-            cout << endl;
+            system("cls");
             displayFilmList();
             break;
         case 2:
-            addFilm();
+            system("cls");
+            addFilm(username);
             break;
         case 3:
+            system("cls");
             deleteFilm();
             break;
         case 4:
+            system("cls");
             displayReviewList();
             break;
         case 5:
-            addReview();
+            system("cls");
+            addReview(username);
             break;
         case 6:
             cout << "Soon...\n";
             break;
         case 7:
-            cout << endl;
+            system("cls");
             displayLogList();
             break;
         case 8:
+            logAction("Logged out", username);
+            system("cls");
+            processLoginChoice();
+        case 9:
             cout << "Exiting...\n";
             logAction("Logged out", username);
             return 0;
@@ -353,7 +394,7 @@ int Menu::open()
     }
 }
 
-int Menu::userMenu()
+int Menu::userMenu(string username)
 {
     bool menuIsOpen = true;
 
@@ -365,10 +406,11 @@ int Menu::userMenu()
         std::cout << "3. Add review\n";
         std::cout << "4. Actors\n";
         std::cout << "5. Exit\n";
+        std::cout << "6.Change account\n";
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
-        while (option < 1 || option > 5)
+        while (option < 1 || option > 6)
         {
             std::cout << "Incorrect option. \nTry again: ";
             std::cin >> option;
@@ -376,22 +418,28 @@ int Menu::userMenu()
         switch (option)
         {
         case 1:
-            cout << endl;
+            system("cls");
             displayFilmList();
             break;
         case 2:
+            system("cls");
             displayReviewList();
             break;
         case 3:
-            addReview();
+            system("cls");
+            addReview(username);
             break;
         case 4:
-            baseFilm.printAllActorsInfo();
+            cout << "soon...\n";
             break;
         case 5:
             cout << "Exiting...\n";
             logAction("Logged out", username);
             return 0;   
+        case 6:
+            logAction("Logged out", username);
+            system("cls");
+            processLoginChoice();
         }
         int variant = 0;
         do {
@@ -416,5 +464,48 @@ int Menu::userMenu()
                 break;
             }
         } while (variant != 1);
+    }
+}
+
+void Menu::registerUser()
+{
+    std::string username, password;
+    std::cout << "Enter username: ";
+    std::cin >> username;
+    std::cout << "Enter password: ";
+    std::cin >> password;
+    userManager.registerUser(username, password);
+    logAction("Registered", username);
+    if (username == "admin")
+    {
+        open(username);
+    }
+    else { 
+        userMenu(username);
+    }
+}
+
+void Menu::loginUser()
+{
+    bool loginSuccessful = false;
+    std::string username, password;
+    do
+    {
+        
+        std::cout << "Enter username: ";
+        std::cin >> username;
+        std::cout << "Enter password: ";
+        std::cin >> password;
+        loginSuccessful = userManager.loginUser(username, password);
+        
+    } while (!loginSuccessful);
+
+    logAction("Logged in", username);
+    if (username == "admin")
+    {
+        open(username);
+    }
+    else {
+        userMenu(username);
     }
 }
