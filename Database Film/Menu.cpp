@@ -148,7 +148,7 @@ void Menu::displayFilmList()
 {
     // Перегляд списку фільмів
     std::ifstream file("films.txt");
-    if (file.is_open())
+    try
     {
         std::string line;
         while (std::getline(file, line))
@@ -175,10 +175,13 @@ void Menu::displayFilmList()
         }
         file.close();
     }
-    else
+    catch (const std::runtime_error& e)                     // перехоплює винятки типу std::runtime_error і 
+                                                            // надає можливість отримати доступ до об'єкта винятка через 
+                                                            // змінну e, щоб вивести інформацію про помилку або виконати інші дії обробки помилки.
     {
-        std::cout << "Unable to open file." << std::endl;
+        std::cerr << "Error: " << e.what() << std::endl;
     }
+
 }
 
 void Menu::displayReviewList()
