@@ -73,5 +73,6 @@
     <Text Include="users.txt" />
     <Text Include="films.txt" />
     <Text Include="log.txt" />
+    <Text Include="actors.txt" />
   </ItemGroup>
 </Project>

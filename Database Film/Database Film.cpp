@@ -9,18 +9,13 @@
 #include "Menu.h"
 #include "UserManager.h"
 
-
 void doSpeak(const Human& human)
 {
     human.speak();
 }
 
-
-
 int main()
 {  
-    //baseFilms baseFilms;
-
     //// Інформація про акторів
     //Actor Murphy("K. Murphy", 47, firstFilm.GetTitle());
     //Actor McConaughey("M. McConaughey", 54, secondFilm.GetTitle());
@@ -35,29 +30,12 @@ int main()
     Menu menu(username, userManager);
     menu.processLoginChoice();
 
-    // Приклад роботи перевантаження бінарного оператора '=='
-    /*if (firstFilm == 2023)          
+ /*   Приклад роботи перевантаження бінарного оператора '=='
+    if (firstFilm == 2023)          
     {
         cout << "\n[Found a film released in 2023] \n";
         firstFilm.printFilmInfo();
     }*/
 
     //cout << "\nfilms in base: " << Film::getTotalFilms() << endl << endl;   // Приклад роботи із 'static' полем
-
-    ////Robert.getProfession();
-    //Zendaya->introduce();
-    //Zendaya->getProfession();
-
-    //delete Zendaya;
-
-    //Human Kovalchuk("Anton Kovalchuk", 17);
-    //Actor Korolenko("V. Korolenko", 18);
-    //Human& Holubchuk = Korolenko;
-    //Kovalchuk.speak();
-    //doSpeak(Holubchuk);
-    //doSpeak(Korolenko);
-    //
-    //firstFilm.play();
-    //firstFilm.stop();
-
 }

@@ -11,6 +11,7 @@
 #include "baseFilms.h"
 #include "Review.h"
 #include "UserManager.h"
+#include "Actor.h"
 
 //class baseFilms;
 class Menu
@@ -20,6 +21,7 @@ private:
 	string username;
 	void addFilm(string username);
 	void addReview(string username);
+	void addActor(string username);
 	UserManager& userManager;
 	void registerUser();
 	void loginUser();
@@ -32,6 +34,10 @@ public:
 
 	void addReviewToFile(const Review& review);
 	void displayReviewList();
+
+	void addActorToFile(const Actor& actor);
+	void displayActorList();
+	void deleteActor();
 
 	void displayLogList();
 

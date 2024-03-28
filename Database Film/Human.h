@@ -10,10 +10,11 @@ class Human
 
 protected:
 
-	string name;
-	int age;
+
 
 public:
+	string name;
+	int age;
 	Human() : name(""), age(0) {}
 	Human(std::string n) : name(n), age(0) {}
 	Human(std::string n, int a) : name(n), age(a) {}

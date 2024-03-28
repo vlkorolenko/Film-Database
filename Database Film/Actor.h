@@ -6,16 +6,17 @@
 class Actor final: public Human 
 {
 
-	std::string films;
 
 public:
 
-	Actor() : Human(), films("") {}
-	Actor(std::string n) : Human(n), films("") {}
-	Actor(std::string n, int a) : Human(n, a), films("") {}
-	Actor(std::string n, int a, std::string f) : Human(n, a), films(f) {}
+	std::string films;
 
-	Actor(const Actor& other) : Human(other.name, other.age), films(other.films) {}
+	//Actor() : Human(), films("") {}
+	//Actor(std::string n) : Human(n), films("") {}
+	//Actor(std::string n, int a) : Human(n, a), films("") {}
+	//Actor(std::string n, int a, std::string f) : Human(n, a), films(f) {}
+
+	//Actor(const Actor& other) : Human(other.name, other.age), films(other.films) {}
 
 	virtual ~Actor() {};
 
@@ -27,6 +28,8 @@ public:
 	virtual void getProfession() const override;
 	void speak() const;
 
+	friend std::ostream& operator<<(std::ostream& os, Actor& actor);
+	friend std::istream& operator>>(std::istream& is, Actor& actor);
 
 	
 };

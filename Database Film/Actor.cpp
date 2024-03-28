@@ -25,3 +25,15 @@ void Actor::speak() const
 {
 	std::cout << "I am an actor\n";
 }
+
+std::ostream& operator<<(std::ostream& os, Actor& actor)
+{
+	os << "Name: " << actor.name << "\nAge: " << actor.age << "\nFilm: " << actor.films;
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, Actor& actor)
+{
+	is >> actor.name >> actor.age >> actor.films;
+	return is;
+}

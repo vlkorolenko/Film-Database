@@ -17,7 +17,7 @@ string Menu::getCurrentDate()
 
 void Menu::displayLoginMenu()
 {
-    std::cout << "\n=== Login Menu ===\n";
+    std::cout << "=== Login Menu ===\n";
     std::cout << "1. Register\n";
     std::cout << "2. Login\n";
     std::cout << "Enter your choice: ";
@@ -129,6 +129,21 @@ void Menu::addReviewToFile(const Review& review)
     }
 }
 
+void Menu::addActorToFile(const Actor& actor)
+{
+    std::ofstream file("actors.txt", std::ios::app);
+    if (file.is_open())
+    {
+        file << actor.name << "," << actor.age << "," << actor.films;
+        file.close();
+        std::cout << "\nActor added successfully." << std::endl;
+    }
+    else
+    {
+        std::cout << "\nUnable to open file." << std::endl;
+    }
+}
+
 void Menu::displayFilmList()
 {
     // Перегляд списку фільмів
@@ -201,6 +216,62 @@ void Menu::displayReviewList()
     }
 }
 
+void Menu::displayActorList()
+{
+    // Перегляд списку фільмів
+    std::ifstream file("actors.txt");
+    if (file.is_open())
+    {
+        std::string line;
+        while (std::getline(file, line))
+        {
+            // Використовуйте стрічковий потік для розбиття рядка на поля
+            std::istringstream iss(line);
+            std::string name, films;
+            int age;
+
+            // Розбиття рядка на поля за допомогою коми як роздільника
+            std::getline(iss, name, ',');
+            iss >> age; iss.ignore(); // Пропустити кому та прочитати рік
+            std::getline(iss, films, ',');
+
+            // Вивід інформації про фільм у вказаному форматі
+            std::cout << "Name: " << name << std::endl;
+            std::cout << "Age: " << age << std::endl;
+            std::cout << "Film: " << films << std::endl;
+            std::cout << "-------------\n"; // Порожній рядок для розділення фільмів
+        }
+        file.close();
+    }
+    else
+    {
+        std::cout << "Unable to open file." << std::endl;
+    }
+}
+
+void Menu::addActor(string username)
+{
+    int age;
+    string name;
+    string film;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
+
+    // Додавання фільму
+    Actor newActor;
+    std::cout << "Enter actor information:" << std::endl;
+    std::cout << "Name: ";
+    std::getline(std::cin, name);
+    newActor.SetName(name);
+    std::cout << "Age: ";
+    std::cin >> age;
+    newActor.SetAge(age);
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистити буфер введення
+    std::cout << "Film: ";
+    std::getline(std::cin, newActor.films);
+    addActorToFile(newActor);
+    logAction("Added an actor", username);
+}
+
 void Menu::displayLogList()
 {
     // Перегляд логів
@@ -238,7 +309,7 @@ void Menu::logAction(const std::string& action, const std::string& username)
     }
     else
     {
-        std::cerr << "Error: Unable to open log file!" << std::endl;
+        std::cerr << "Unable to open log file" << std::endl;
     }
 }
 
@@ -312,20 +383,21 @@ int Menu::open(string username)
 
     while (menuIsOpen)
     {
-        std::cout << "\n*MENU*\n";
+        std::cout << "*MENU*\n";
         std::cout << "1. Movie list\n";
         std::cout << "2. Add movie\n";
         std::cout << "3. Remove movie\n";
         std::cout << "4. Reviews\n";
         std::cout << "5. Add review\n";
         std::cout << "6. Actors\n";
-        std::cout << "7. Logs\n";
-        std::cout << "8. Change account\n";
-        std::cout << "9. Exit\n";
+        std::cout << "7. Add actor\n";
+        std::cout << "8. Logs\n";
+        std::cout << "9. Change account\n";
+        std::cout << "10. [Exit]\n";
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
-        while (option < 1 || option > 9)
+        while (option < 1 || option > 10)
         {
             std::cout << "Incorrect option. \nTry again: ";
             std::cin >> option;
@@ -353,17 +425,22 @@ int Menu::open(string username)
             addReview(username);
             break;
         case 6:
-            cout << "Soon...\n";
+            system("cls");
+            displayActorList();
             break;
         case 7:
             system("cls");
-            displayLogList();
+            addActor(username);
             break;
         case 8:
+            system("cls");
+            displayLogList();
+            break;
+        case 9:
             logAction("Logged out", username);
             system("cls");
             processLoginChoice();
-        case 9:
+        case 10:
             cout << "Exiting...\n";
             logAction("Logged out", username);
             return 0;
@@ -371,7 +448,7 @@ int Menu::open(string username)
         int variant = 0;
         do {
             cout << "\n1. Back to menu";
-            cout << "\n2. Exit\n";
+            cout << "\n2. [Exit]\n";
             cout << "Choose option: ";
             cin >> variant;
             while (variant < 1 || variant > 2)
@@ -405,8 +482,8 @@ int Menu::userMenu(string username)
         std::cout << "2. Reviews\n";
         std::cout << "3. Add review\n";
         std::cout << "4. Actors\n";
-        std::cout << "5. Exit\n";
-        std::cout << "6.Change account\n";
+        std::cout << "5. Change account\n";
+        std::cout << "6. [Exit]\n";
         std::cout << "Choose option: ";
         int option;
         std::cin >> option;
@@ -430,21 +507,23 @@ int Menu::userMenu(string username)
             addReview(username);
             break;
         case 4:
-            cout << "soon...\n";
+            system("cls");
+            displayActorList();
             break;
         case 5:
-            cout << "Exiting...\n";
-            logAction("Logged out", username);
-            return 0;   
-        case 6:
             logAction("Logged out", username);
             system("cls");
             processLoginChoice();
+        case 6:
+            cout << "Exiting...\n";
+            logAction("Logged out", username);
+            return 0;
         }
+
         int variant = 0;
         do {
             cout << "\n1. Back to menu";
-            cout << "\n2. Exit\n";
+            cout << "\n2. [Exit]\n";
             cout << "Choose option: ";
             cin >> variant;
             while (variant < 1 || variant > 2)

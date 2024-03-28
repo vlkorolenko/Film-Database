@@ -148,6 +148,7 @@
     <ClInclude Include="VideoContent.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="actors.txt" />
     <Text Include="films.txt" />
     <Text Include="log.txt" />
     <Text Include="users.txt" />
